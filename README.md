@@ -55,3 +55,15 @@ Plain JavaScript objects are [unordered collections of properties](http://www.ec
 ##### But I just want it to be in order for readability
 
 That would require manually parsing the JSON string with regular expressions (instead of using `JSON.parse`), which would be too slow. And it's not a good idea to go down the road of representing the data differently from how the engine actually sees it.
+
+
+### Regular theme
+
+![](https://user-images.githubusercontent.com/1856992/179880460-81455bb1-0954-4c0e-82e0-c2c6efd4a987.png)
+
+![](https://user-images.githubusercontent.com/1856992/179880507-25b8c3ef-c131-497d-994f-e1a670f62ac7.png)
+
+### Raw
+
+![](https://user-images.githubusercontent.com/1856992/179880630-67dc0472-c34b-46ca-aa2c-5764029aacb7.png)
+![](https://user-images.githubusercontent.com/1856992/179880568-77486466-1d2a-47c5-a62b-3b15e2be2771.png)
