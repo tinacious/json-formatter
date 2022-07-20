@@ -1,10 +1,21 @@
 /*@charset "utf-8";*/
 
+@import "vars";
+
 body {
   -webkit-user-select: text ;
   overflow-y: scroll !important ;
   margin: 0 ;
   position: relative ;
+  line-height: 1.4;
+
+  @include is-dark-mode {
+    background: $background-dark;
+  }
+
+  @include is-light-mode {
+    background: $background-light;
+  }
 }
 
 #optionBar {
@@ -19,9 +30,18 @@ body {
   -webkit-border-radius: 2px;
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   -webkit-user-select: none;
-  background: -webkit-linear-gradient(#fafafa, #f4f4f4 40%, #e5e5e5);
+
+  @include is-light-mode {
+    background: -webkit-linear-gradient(#fafafa, #f4f4f4 40%, #e5e5e5);
+    color: #444;
+  }
+
+  @include is-dark-mode {
+    background: linear-gradient(to bottom, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#000000 51%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%);
+    color: $foreground-dark;
+  }
+  
   border: 1px solid #aaa;
-  color: #444;
   font-size: 12px ;
   margin-bottom: 0px;
   min-width: 4em;
@@ -48,23 +68,44 @@ body {
 
 #buttonFormatted:hover, #buttonPlain:hover {
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
-  background: #ebebeb -webkit-linear-gradient(#fefefe, #f8f8f8 40%, #e9e9e9);
-  border-color: #999;
-  color: #222;
+
+  @include is-light-mode {
+    background: #ebebeb -webkit-linear-gradient(#fefefe, #f8f8f8 40%, #e9e9e9);
+    color: #222;
+    border-color: #999;
+  }
+  @include is-dark-mode {
+    background: linear-gradient(to bottom, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#000000 51%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%);
+    color: $foreground-dark;
+  }
 }
 
 #buttonFormatted:active,
 #buttonPlain:active {
   -webkit-box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2);
-  background: #ebebeb -webkit-linear-gradient(#f4f4f4, #efefef 40%, #dcdcdc);
-  color: #333;
+  @include is-light-mode {
+    background: #ebebeb -webkit-linear-gradient(#f4f4f4, #efefef 40%, #dcdcdc);
+    color: #333;
+  }
+
+  @include is-dark-mode {
+    background: linear-gradient(to bottom, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#000000 51%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%);
+    color: $foreground-dark;
+  }
 }
 
 #buttonFormatted.selected,
 #buttonPlain.selected {
-  -webkit-box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.2);
-  background: #ebebeb -webkit-linear-gradient(#e4e4e4, #dfdfdf 40%, #dcdcdc);
-  color: #333;
+  @include is-light-mode {
+    -webkit-box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.2);
+    background: #ebebeb -webkit-linear-gradient(#e4e4e4, #dfdfdf 40%, #dcdcdc);
+    color: #333;
+  }
+
+  @include is-dark-mode {
+    background: black;
+    color: $foreground-dark;
+  }
 }
 
 #buttonFormatted:focus,
@@ -76,8 +117,15 @@ body {
 #jsonpOpener,
 #jsonpCloser {
   padding: 4px 0 0 8px ;
-  color: black ;
   margin-bottom: -6px ;
+
+  @include is-dark-mode {
+    color: $toggle-dark;
+  }
+  
+  @include is-light-mode {
+    color: $toggle-light;
+  }
 }
 
 #jsonpCloser {
@@ -90,6 +138,15 @@ body {
 }
 pre {
   padding: 36px 5px 5px 5px ;
+  font-family: 'Cascadia Code', 'Jetbrains Mono', monospace;
+
+  @include is-dark-mode {
+    color: $foreground-dark;
+  }
+  
+  @include is-light-mode {
+    color: $foreground-light;
+  }
 }
 
 
@@ -111,7 +168,14 @@ pre {
   }
   &> .ell {
     margin: 0 4px ;
-    color: #888 ;
+
+    @include is-dark-mode {
+      color: $foreground-dark;
+    }
+    
+    @include is-light-mode {
+      color: $foreground-light;
+    }
   }
   .kvov {
     display: inline ;
@@ -130,8 +194,12 @@ pre {
   background-repeat: no-repeat ;
   background-position: center center; 
   display: block ;
-  opacity: 0.15 ;
+  opacity: 0.75 ;
   // -webkit-transition: -webkit-transform 0.05s linear ;
+
+  @include is-dark-mode {
+    filter: invert(1);
+  }
 
   .collapsed > & {
     -webkit-transform: rotate(-90deg) ;
@@ -144,9 +212,19 @@ pre {
 
   &:hover {
     opacity: 0.35 ;
+
+    @include is-dark-mode {
+      opacity: 0.9;
+    }
   }
+
   &:active {
     opacity: 0.5 ;
+    
+    @include is-dark-mode {
+      opacity: 1 ;
+
+    }
   }
 
   /* .e that are *inside* the children of a collapsed one */
@@ -166,18 +244,47 @@ pre {
 /* SYNTAX HIGHLIGHTING */
 
   #formattedJson, #jsonpOpener, #jsonpCloser {
-    color: #333 ;
-    font: 13px/18px monospace ;
+    @include is-dark-mode {
+      color: $foreground-dark;
+    }
+    
+    @include is-light-mode {
+      color: $foreground-light;
+    }
+
+    font-size: 1.1rem;
+    font-family: 'Comic Mono', 'Cascadia Code', 'Jetbrains Mono', monospace;
   }
 
   #formattedJson {
-    color: #444 ;
+    @include is-dark-mode {
+      color: $foreground-dark;
+    }
+    
+    @include is-light-mode {
+      color: $foreground-light;
+    }
   }
   .b /* Bracket/brace */ {
     font-weight: bold ;
+
+    @include is-dark-mode {
+      color: $punctuation-dark;
+    }
+    
+    @include is-light-mode {
+      color: $punctuation-light;
+    }
   }
-  .s {
-    color: #0B7500 ;
+  .s { // string
+    @include is-dark-mode {
+      color: $color-string-dark;
+    }
+    
+    @include is-light-mode {
+      color: $color-string-light;
+    }
+
     word-wrap: break-word; 
   }
   a:link, a:visited {
@@ -186,14 +293,34 @@ pre {
   }
   a:hover, a:active {
     text-decoration: underline ;
-    color: #050 ;
+    
+    @include is-light-mode {
+      color: $link-hover-light ;
+    }
+    
+    @include is-dark-mode {
+      color: $link-hover-dark ;
+    }
   }
   .bl, .nl, .n { /* bool, null, number */
     font-weight: bold ;
-    color: #1A01CC ;
+
+    @include is-dark-mode {
+      color: $color-bool-dark;
+    }
+    
+    @include is-light-mode {
+      color: $color-bool-light;
+    }
   }
   .k { /* key */
-    color: black ;
+    @include is-dark-mode {
+      color: $color-key-dark;
+    }
+    
+    @include is-light-mode {
+      color: $color-key-light;
+    }
   }
 
 #formattingMsg {
@@ -228,8 +355,4 @@ span {
 }
 #spinner {
   -webkit-animation: spin 2s 0 infinite ;
-}
-
-* {
-  -webkit-font-smoothing: antialiased;
 }

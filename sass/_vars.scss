@@ -1,0 +1,31 @@
+@mixin is-dark-mode {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+@mixin is-light-mode {
+  @media (prefers-color-scheme: light) {
+    @content;
+  }
+}
+
+// Light mode
+$toggle-light: #8e8e8e;
+$punctuation-light: #ff3399;
+$background-light: #fff;
+$foreground-light: #1D1D27;
+$color-key-light: #122594; // .k
+$color-string-light: #129438; // .s
+$color-bool-light: #DB5EFF; // .bl
+$link-hover-light: #ff3399;
+
+// Dark mode
+$toggle-dark: #ffe733;
+$punctuation-dark: #ff3399;
+$background-dark: #1D1D27;
+$foreground-dark: #fff;
+$color-key-dark: #00C2FF; // .k
+$color-string-dark: #FFC957; // .s
+$color-bool-dark: #DB5EFF; // .bl
+$link-hover-dark: #ff3399;

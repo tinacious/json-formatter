@@ -1,0 +1,13 @@
+{
+  "name": "json-viewer",
+  "scripts": {
+    "start": "npm run build",
+    "hbs": "hbs templates/content.hbs -o extension/js",
+    "replace-css": "node replace-css.js",
+    "build": "sh build.sh"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7",
+    "sass": "^1.53.0"
+  }
+}
