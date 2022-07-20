@@ -2,7 +2,6 @@
   "name": "json-viewer",
   "scripts": {
     "start": "npm run build",
-    "hbs": "hbs templates/content.hbs -o extension/js",
     "replace-css": "node replace-css.js",
     "build": "sh build.sh"
   },
